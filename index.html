@@ -1,0 +1,2083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TruckersFM — Your Drive. Your Music.</title>
+
+<!-- TRUCKERSFM FAVICON -->
+<link rel="icon" type="image/svg+xml"
+href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%236b1b91'/%3E%3Ctext x='50' y='63' text-anchor='middle' font-family='Arial' font-size='38' font-weight='900' fill='white'%3ETFM%3C/text%3E%3C/svg%3E">
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            #8b35bd 0%,
+            #40105d 35%,
+            #120318 75%,
+            #08010b 100%
+        );
+    color: white;
+    font-family: Orbitron, Arial, sans-serif;
+}
+
+.container {
+    max-width: 1150px;
+    margin: auto;
+    padding: 35px 20px 70px;
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    margin-top: 8px;
+    color: #d28aff;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+/* PLAYER */
+
+.player {
+    background: rgba(18,3,29,.92);
+    border: 1px solid rgba(210,120,255,.35);
+    border-radius: 26px;
+    padding: 26px;
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.55),
+        0 0 35px rgba(150,50,220,.10);
+}
+
+.player-main {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.cover {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 21px;
+    background: #24102f;
+    border: 2px solid rgba(211,125,255,.45);
+    box-shadow: 0 12px 40px rgba(0,0,0,.65);
+    transition: .3s;
+}
+
+.cover.loading {
+    opacity: .45;
+    transform: scale(.97);
+}
+
+.player-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.label {
+    color: #c66cff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.song {
+    margin-top: 9px;
+    font-size: 30px;
+    font-weight: 900;
+    word-break: break-word;
+}
+
+.artist {
+    margin-top: 9px;
+    color: #b394c0;
+    font-size: 16px;
+}
+
+.art-status {
+    margin-top: 11px;
+    color: #76517f;
+    font-size: 9px;
+}
+
+/* CONTROLS */
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.play {
+    width: 56px;
+    height: 56px;
+    border: 0;
+    border-radius: 50%;
+    background: #aa48ed;
+    color: white;
+    font-size: 19px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.play:hover {
+    background: #c06cff;
+    transform: scale(1.05);
+}
+
+.volume {
+    width: 150px;
+}
+
+.stream-status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(207,112,255,.35);
+    color: #ca75ff;
+    font-size: 10px;
+    font-weight: 800;
+}
+
+.stream-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d477ff;
+    box-shadow: 0 0 12px #d477ff;
+}
+
+/* ON AIR */
+
+.onair-wrapper {
+    margin-top: 30px;
+    margin-bottom: 45px;
+}
+
+.onair-box {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 24px 28px;
+    border-radius: 23px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(91,20,126,.60),
+            rgba(23,4,37,.94)
+        );
+    border: 1px solid rgba(207,113,255,.38);
+    box-shadow:
+        0 12px 40px rgba(0,0,0,.35),
+        inset 0 0 35px rgba(177,70,255,.06);
+}
+
+.onair-box::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #c86dff;
+    box-shadow: 0 0 20px #c86dff;
+}
+
+.onair-icon {
+    width: 66px;
+    height: 66px;
+    min-width: 66px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    background: rgba(198,91,255,.13);
+    border: 1px solid rgba(205,113,255,.35);
+}
+
+.onair-content {
+    flex: 1;
+}
+
+.onair-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.live-pill,
+.auto-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 10px;
+    border-radius: 15px;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.live-pill {
+    background: rgba(255,60,90,.08);
+    border: 1px solid rgba(255,90,120,.25);
+    color: #ff718c;
+}
+
+.auto-pill {
+    background: rgba(180,100,255,.08);
+    border: 1px solid rgba(205,113,255,.25);
+    color: #c77aff;
+}
+
+.live-light {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ff5575;
+    box-shadow: 0 0 10px #ff5575;
+    animation: livePulse 1.2s infinite;
+}
+
+@keyframes livePulse {
+    0%,100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: .35;
+        transform: scale(.7);
+    }
+}
+
+.onair-title {
+    margin-top: 7px;
+    font-size: 27px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.onair-presenter {
+    margin-top: 5px;
+    color: #d081ff;
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.onair-show {
+    margin-top: 4px;
+    color: #a477ad;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.onair-time {
+    min-width: 140px;
+    text-align: right;
+}
+
+.onair-time-label {
+    color: #76517f;
+    font-size: 8px;
+    letter-spacing: 1px;
+}
+
+.onair-time-value {
+    margin-top: 6px;
+    color: #d99aff;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.progress-container {
+    margin-top: 8px;
+    width: 140px;
+    height: 4px;
+    border-radius: 5px;
+    background: rgba(255,255,255,.07);
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #c66cff;
+    box-shadow: 0 0 10px #c66cff;
+    transition: width 1s linear;
+}
+
+/* SECTIONS */
+
+.section {
+    margin-top: 45px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.section-title h2 {
+    margin: 0;
+    font-size: 25px;
+}
+
+.section-title span {
+    color: #cb70ff;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        rgba(205,112,255,.65),
+        transparent
+    );
+}
+
+/* COMING UP */
+
+.upcoming {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+    gap: 15px;
+}
+
+.upcoming-card {
+    position: relative;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(40,8,57,.78);
+    border: 1px solid rgba(205,112,255,.20);
+}
+
+.upcoming-card.next {
+    border-color: #c96dff;
+    box-shadow: 0 0 28px rgba(184,66,255,.18);
+}
+
+.badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 5px 9px;
+    border-radius: 15px;
+    color: #d27aff;
+    border: 1px solid rgba(205,112,255,.4);
+    font-size: 8px;
+}
+
+.up-day {
+    color: #886094;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.up-time {
+    margin-top: 7px;
+    color: #deb6f4;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.up-name {
+    margin-top: 12px;
+    color: #cd72ff;
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.up-show {
+    margin-top: 5px;
+    color: #896294;
+    font-size: 9px;
+}
+
+/* SCHEDULE */
+
+.day {
+    margin-bottom: 30px;
+}
+
+.day-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.day-title h3 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.show {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 17px;
+    margin-bottom: 9px;
+    border-radius: 16px;
+    background: rgba(40,8,57,.72);
+    border: 1px solid rgba(205,112,255,.17);
+}
+
+.show.current {
+    border-color: #cb70ff;
+    box-shadow: 0 0 25px rgba(185,67,255,.18);
+}
+
+.time {
+    width: 125px;
+    text-align: center;
+    color: #dfb9f6;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.mic {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(175,69,255,.13);
+}
+
+.show-info {
+    flex: 1;
+}
+
+.presenter {
+    color: #cf76ff;
+    font-size: 19px;
+    font-weight: 900;
+}
+
+.show-type {
+    margin-top: 4px;
+    color: #896395;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.now {
+    display: none;
+    color: #d079ff;
+    font-size: 8px;
+    font-weight: 900;
+}
+
+.show.current .now {
+    display: block;
+}
+
+/* FOOTER */
+
+footer {
+    margin-top: 60px;
+    padding-top: 25px;
+    text-align: center;
+    border-top: 1px solid rgba(205,112,255,.14);
+    color: #76517f;
+    font-size: 10px;
+}
+
+footer strong {
+    color: #c66cff;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+
+    .logo {
+        font-size: 33px;
+    }
+
+    .player-main {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .song {
+        font-size: 22px;
+    }
+
+    .controls {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .stream-status {
+        margin-left: 0;
+    }
+
+    .onair-box {
+        flex-wrap: wrap;
+        padding: 20px;
+    }
+
+    .onair-time {
+        width: 100%;
+        text-align: left;
+    }
+
+    .progress-container {
+        width: 100%;
+    }
+
+    .show {
+        flex-wrap: wrap;
+    }
+
+    .time {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="logo">🚛 TruckersFM</div>
+    <div class="tagline">YOUR DRIVE. YOUR MUSIC.</div>
+</header>
+
+
+<!-- NOW PLAYING -->
+
+<div class="player">
+
+    <div class="player-main">
+
+        <img
+            id="cover"
+            class="cover"
+            alt="Album artwork"
+        >
+
+        <div class="player-info">
+
+            <div class="label">
+                NOW PLAYING
+            </div>
+
+            <div
+                id="song"
+                class="song"
+            >
+                Waiting for music...
+            </div>
+
+            <div
+                id="artist"
+                class="artist"
+            >
+                TruckersFM
+            </div>
+
+            <div
+                id="artStatus"
+                class="art-status"
+            >
+                Searching for album artwork...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="controls">
+
+        <!-- PLAY BUTTON -->
+
+        <button
+            id="playButton"
+            class="play"
+            title="Listen to TruckersFM"
+        >
+            ▶
+        </button>
+
+        <input
+            id="volume"
+            class="volume"
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value="0.8"
+        >
+
+        <div class="stream-status">
+            <span class="stream-dot"></span>
+            LIVE
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ON AIR -->
+
+<div class="onair-wrapper">
+
+    <div class="onair-box">
+
+        <div
+            id="onAirIcon"
+            class="onair-icon"
+        >
+            📻
+        </div>
+
+        <div class="onair-content">
+
+            <div class="onair-top">
+
+                <div
+                    id="onAirBadge"
+                    class="auto-pill"
+                >
+                    AUTOMATIC
+                </div>
+
+            </div>
+
+            <div
+                id="onAirTitle"
+                class="onair-title"
+            >
+                AUTODJ
+            </div>
+
+            <div
+                id="onAirPresenter"
+                class="onair-presenter"
+            >
+                TruckersFM
+            </div>
+
+            <div
+                id="onAirShow"
+                class="onair-show"
+            >
+                Next show loading...
+            </div>
+
+        </div>
+
+        <div class="onair-time">
+
+            <div class="onair-time-label">
+                STATUS
+            </div>
+
+            <div
+                id="onAirTime"
+                class="onair-time-value"
+            >
+                AUTODJ
+            </div>
+
+            <div class="progress-container">
+
+                <div
+                    id="progressBar"
+                    class="progress-bar"
+                ></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- COMING UP -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            <span>COMING UP</span>
+        </h2>
+
+        <div class="line"></div>
+
+    </div>
+
+    <div
+        id="comingUp"
+        class="upcoming"
+    ></div>
+
+</section>
+
+
+<!-- WEEKLY SCHEDULE -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <h2>
+            <span>WEEKLY</span> SCHEDULE
+        </h2>
+
+        <div class="line"></div>
+
+    </div>
+
+    <div id="schedule"></div>
+
+</section>
+
+
+<footer>
+    <strong>TruckersFM</strong>
+    &nbsp;•&nbsp;
+    Your Drive. Your Music.
+</footer>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   PLAY BUTTON
+===================================================== */
+
+document
+    .getElementById("playButton")
+    .addEventListener("click", () => {
+
+        window.location.href =
+            "https://truckersfm1.ismyradio.com/";
+
+    });
+
+
+/* =====================================================
+   FALLBACK COVER
+===================================================== */
+
+const fallbackCover =
+`data:image/svg+xml;charset=UTF-8,${encodeURIComponent(`
+<svg xmlns="http://www.w3.org/2000/svg"
+width="800"
+height="800">
+
+<rect width="800"
+height="800"
+fill="#26052f"/>
+
+<circle cx="400"
+cy="340"
+r="180"
+fill="#8b2bb7"/>
+
+<text x="400"
+y="335"
+text-anchor="middle"
+fill="white"
+font-family="Arial"
+font-weight="bold"
+font-size="92">
+TFM
+</text>
+
+<text x="400"
+y="435"
+text-anchor="middle"
+fill="#dfa5ff"
+font-family="Arial"
+font-size="34">
+TRUCKERSFM
+</text>
+
+</svg>
+`)}`;
+
+document.getElementById("cover").src =
+    fallbackCover;
+
+
+/* =====================================================
+   SCHEDULE
+===================================================== */
+
+const shows = [
+
+    {
+        day: 1,
+        dayName: "Monday",
+        start: "10:00",
+        end: "12:00",
+        presenter: "Atus117",
+        show: "Daytime Show"
+    },
+
+    {
+        day: 1,
+        dayName: "Monday",
+        start: "17:00",
+        end: "18:00",
+        presenter: "Huni0101",
+        show: "Huni Show"
+    },
+
+    {
+        day: 1,
+        dayName: "Monday",
+        start: "18:00",
+        end: "20:00",
+        presenter: "Ewan",
+        show: "Evening Show"
+    },
+
+    {
+        day: 2,
+        dayName: "Tuesday",
+        start: "10:00",
+        end: "12:00",
+        presenter: "Atus117",
+        show: "Daytime Show"
+    },
+
+    {
+        day: 2,
+        dayName: "Tuesday",
+        start: "17:00",
+        end: "18:00",
+        presenter: "Huni0101",
+        show: "Huni Show"
+    },
+
+    {
+        day: 2,
+        dayName: "Tuesday",
+        start: "18:00",
+        end: "20:00",
+        presenter: "Ewan",
+        show: "Evening Show"
+    },
+
+    {
+        day: 3,
+        dayName: "Wednesday",
+        start: "10:00",
+        end: "12:00",
+        presenter: "Atus117",
+        show: "Daytime Show"
+    },
+
+    {
+        day: 3,
+        dayName: "Wednesday",
+        start: "17:00",
+        end: "18:00",
+        presenter: "Huni0101",
+        show: "Huni Show"
+    },
+
+    {
+        day: 3,
+        dayName: "Wednesday",
+        start: "18:00",
+        end: "20:00",
+        presenter: "Ewan",
+        show: "Evening Show"
+    },
+
+    {
+        day: 4,
+        dayName: "Thursday",
+        start: "10:00",
+        end: "12:00",
+        presenter: "Atus117",
+        show: "Daytime Show"
+    },
+
+    {
+        day: 4,
+        dayName: "Thursday",
+        start: "17:00",
+        end: "18:00",
+        presenter: "Huni0101",
+        show: "Huni Show"
+    },
+
+    {
+        day: 4,
+        dayName: "Thursday",
+        start: "18:00",
+        end: "20:00",
+        presenter: "Ewan",
+        show: "Evening Show"
+    },
+
+    {
+        day: 5,
+        dayName: "Friday",
+        start: "10:00",
+        end: "12:00",
+        presenter: "Atus117",
+        show: "Daytime Show"
+    },
+
+    {
+        day: 5,
+        dayName: "Friday",
+        start: "17:00",
+        end: "18:00",
+        presenter: "Huni0101",
+        show: "Huni Show"
+    },
+
+    {
+        day: 5,
+        dayName: "Friday",
+        start: "18:00",
+        end: "20:00",
+        presenter: "Ewan",
+        show: "Evening Show"
+    },
+
+    {
+        day: 5,
+        dayName: "Friday",
+        start: "20:00",
+        end: "00:00",
+        presenter: "Tech",
+        show: "Tech Show"
+    },
+
+    {
+        day: 6,
+        dayName: "Saturday",
+        start: "08:00",
+        end: "12:00",
+        presenter: "Jessica",
+        show: "Weekend Show"
+    },
+
+    {
+        day: 0,
+        dayName: "Sunday",
+        start: "08:00",
+        end: "12:00",
+        presenter: "Jessica",
+        show: "Weekend Show"
+    }
+
+];
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function toMinutes(time) {
+
+    const [hours, minutes] =
+        time.split(":").map(Number);
+
+    return hours * 60 + minutes;
+}
+
+
+function getNowMinutes() {
+
+    const now = new Date();
+
+    return (
+        now.getHours() * 60 +
+        now.getMinutes() +
+        now.getSeconds() / 60
+    );
+
+}
+
+
+/* =====================================================
+   CURRENT SHOW
+===================================================== */
+
+function getCurrentShow() {
+
+    const now = new Date();
+
+    const day = now.getDay();
+
+    const minutes =
+        getNowMinutes();
+
+
+    return shows.find(show => {
+
+        if(show.day !== day)
+            return false;
+
+
+        const start =
+            toMinutes(show.start);
+
+
+        let end =
+            toMinutes(show.end);
+
+
+        if(show.end === "00:00")
+            end = 1440;
+
+
+        return (
+            minutes >= start &&
+            minutes < end
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   NEXT SHOW
+===================================================== */
+
+function getNextShow() {
+
+    const now = new Date();
+
+    const today =
+        now.getDay();
+
+    const minutes =
+        getNowMinutes();
+
+
+    let candidates = [];
+
+
+    for(let offset = 0; offset < 8; offset++) {
+
+        const day =
+            (today + offset) % 7;
+
+
+        shows
+            .filter(show => show.day === day)
+            .forEach(show => {
+
+                const start =
+                    toMinutes(show.start);
+
+
+                if(
+                    offset === 0 &&
+                    start <= minutes
+                ) {
+                    return;
+                }
+
+
+                candidates.push({
+                    ...show,
+                    offset
+                });
+
+            });
+
+    }
+
+
+    return candidates[0] || null;
+
+}
+
+
+/* =====================================================
+   ON AIR
+===================================================== */
+
+function updateOnAir() {
+
+    const active =
+        getCurrentShow();
+
+
+    const badge =
+        document.getElementById("onAirBadge");
+
+    const title =
+        document.getElementById("onAirTitle");
+
+    const presenter =
+        document.getElementById("onAirPresenter");
+
+    const show =
+        document.getElementById("onAirShow");
+
+    const time =
+        document.getElementById("onAirTime");
+
+    const icon =
+        document.getElementById("onAirIcon");
+
+    const progress =
+        document.getElementById("progressBar");
+
+
+    document
+        .querySelectorAll(".show")
+        .forEach(el => {
+            el.classList.remove("current");
+        });
+
+
+    if(active) {
+
+        badge.className =
+            "live-pill";
+
+        badge.innerHTML =
+            `<span class="live-light"></span> LIVE`;
+
+
+        title.textContent =
+            "ON AIR";
+
+
+        presenter.textContent =
+            active.presenter;
+
+
+        show.textContent =
+            active.show;
+
+
+        time.textContent =
+            active.start +
+            " — " +
+            active.end;
+
+
+        icon.textContent =
+            "🎙️";
+
+
+        const element =
+            document.querySelector(
+                `.show[data-day="${active.day}"][data-start="${active.start}"]`
+            );
+
+
+        if(element)
+            element.classList.add("current");
+
+
+        const now =
+            getNowMinutes();
+
+        const start =
+            toMinutes(active.start);
+
+        let end =
+            toMinutes(active.end);
+
+
+        if(active.end === "00:00")
+            end = 1440;
+
+
+        const percentage =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    ((now - start) /
+                    (end - start)) * 100
+                )
+            );
+
+
+        progress.style.width =
+            percentage + "%";
+
+
+        return;
+
+    }
+
+
+    /* AUTODJ */
+
+    const next =
+        getNextShow();
+
+
+    badge.className =
+        "auto-pill";
+
+    badge.textContent =
+        "AUTOMATIC";
+
+
+    title.textContent =
+        "AUTODJ";
+
+
+    presenter.textContent =
+        "TruckersFM";
+
+
+    icon.textContent =
+        "📻";
+
+
+    time.textContent =
+        "AUTODJ";
+
+
+    progress.style.width =
+        "0%";
+
+
+    if(next) {
+
+        show.textContent =
+            "Next: " +
+            next.presenter +
+            " — " +
+            next.show;
+
+    }
+    else {
+
+        show.textContent =
+            "Next scheduled show loading...";
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER SCHEDULE
+===================================================== */
+
+function renderSchedule() {
+
+    const container =
+        document.getElementById("schedule");
+
+
+    const dayNames = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+    ];
+
+
+    container.innerHTML = "";
+
+
+    const orderedDays =
+        [1,2,3,4,5,6,0];
+
+
+    orderedDays.forEach(day => {
+
+        const dayShows =
+            shows.filter(
+                show => show.day === day
+            );
+
+
+        if(!dayShows.length)
+            return;
+
+
+        const section =
+            document.createElement("div");
+
+
+        section.className =
+            "day";
+
+
+        let html = `
+
+            <div class="day-title">
+
+                <h3>
+                    ${dayNames[day]}
+                </h3>
+
+                <div class="line"></div>
+
+            </div>
+
+        `;
+
+
+        dayShows.forEach(show => {
+
+            html += `
+
+                <div
+                    class="show"
+                    data-day="${show.day}"
+                    data-start="${show.start}"
+                >
+
+                    <div class="time">
+                        ${show.start} - ${show.end}
+                    </div>
+
+                    <div class="mic">
+                        🎙️
+                    </div>
+
+                    <div class="show-info">
+
+                        <div class="presenter">
+                            ${show.presenter}
+                        </div>
+
+                        <div class="show-type">
+                            ${show.show}
+                        </div>
+
+                    </div>
+
+                    <div class="now">
+                        NOW ON AIR
+                    </div>
+
+                </div>
+
+            `;
+
+        });
+
+
+        section.innerHTML =
+            html;
+
+
+        container.appendChild(
+            section
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   COMING UP
+===================================================== */
+
+function updateComingUp() {
+
+    const container =
+        document.getElementById("comingUp");
+
+
+    const today =
+        new Date().getDay();
+
+    const minutes =
+        getNowMinutes();
+
+
+    let upcoming = [];
+
+
+    for(let offset = 0; offset < 8; offset++) {
+
+        const day =
+            (today + offset) % 7;
+
+
+        shows
+            .filter(show => show.day === day)
+            .forEach(show => {
+
+                const start =
+                    toMinutes(show.start);
+
+
+                if(
+                    offset === 0 &&
+                    start <= minutes
+                ) {
+                    return;
+                }
+
+
+                upcoming.push({
+                    ...show,
+                    offset
+                });
+
+            });
+
+    }
+
+
+    upcoming =
+        upcoming.slice(0,4);
+
+
+    container.innerHTML = "";
+
+
+    upcoming.forEach(
+        (show,index) => {
+
+            const card =
+                document.createElement("div");
+
+
+            card.className =
+                "upcoming-card" +
+                (
+                    index === 0
+                    ? " next"
+                    : ""
+                );
+
+
+            let dayText =
+                show.dayName;
+
+
+            if(show.offset === 1)
+                dayText = "Tomorrow";
+
+
+            card.innerHTML = `
+
+                ${
+                    index === 0
+                    ? `<div class="badge">NEXT</div>`
+                    : ""
+                }
+
+                <div class="up-day">
+                    ${dayText}
+                </div>
+
+                <div class="up-time">
+                    ${show.start} - ${show.end}
+                </div>
+
+                <div class="up-name">
+                    ${show.presenter}
+                </div>
+
+                <div class="up-show">
+                    ${show.show}
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CASTER.FM
+===================================================== */
+
+const CASTER_HOST =
+    "https://morcast.caster.fm:19019";
+
+const CASTER_MOUNT =
+    "/cc4KU";
+
+let lastSong = "";
+
+
+async function getCasterMetadata() {
+
+    const url =
+        CASTER_HOST +
+        "/admin/publicstats.json?_=" +
+        Date.now();
+
+
+    try {
+
+        const response =
+            await fetch(
+                url,
+                {
+                    cache: "no-store"
+                }
+            );
+
+
+        if(!response.ok)
+            return null;
+
+
+        const data =
+            await response.json();
+
+
+        let source = null;
+
+
+        if(
+            data &&
+            data[1] &&
+            data[1].source
+        ) {
+
+            source =
+                data[1].source[
+                    CASTER_MOUNT
+                ];
+
+        }
+
+
+        if(!source)
+            source =
+                findStreamObject(data);
+
+
+        if(!source)
+            return null;
+
+
+        const metadata =
+            source.metadata || {};
+
+
+        const title =
+            metadata.x_icy_title ||
+            metadata.title ||
+            "";
+
+
+        return {
+            title
+        };
+
+    }
+
+    catch(error) {
+
+        console.log(
+            "Metadata error:",
+            error
+        );
+
+        return null;
+
+    }
+
+}
+
+
+function findStreamObject(obj) {
+
+    if(
+        !obj ||
+        typeof obj !== "object"
+    )
+        return null;
+
+
+    if(
+        obj.metadata &&
+        (
+            obj.metadata.x_icy_title ||
+            obj.metadata.title
+        )
+    )
+        return obj;
+
+
+    for(
+        const key in obj
+    ) {
+
+        const result =
+            findStreamObject(
+                obj[key]
+            );
+
+
+        if(result)
+            return result;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   PARSE SONG
+===================================================== */
+
+function parseSong(text) {
+
+    if(!text)
+        return null;
+
+
+    text =
+        text.trim();
+
+
+    const parts =
+        text.split(" - ");
+
+
+    if(parts.length >= 2) {
+
+        const artist =
+            parts.shift().trim();
+
+
+        const title =
+            parts.join(" - ").trim();
+
+
+        return {
+            artist,
+            title
+        };
+
+    }
+
+
+    return {
+        artist: "TruckersFM",
+        title: text
+    };
+
+}
+
+
+/* =====================================================
+   iTUNES ARTWORK
+===================================================== */
+
+async function findArtwork(
+    artist,
+    title
+) {
+
+    const cover =
+        document.getElementById("cover");
+
+    const status =
+        document.getElementById("artStatus");
+
+
+    status.textContent =
+        "Searching iTunes artwork...";
+
+
+    cover.classList.add("loading");
+
+
+    return new Promise(resolve => {
+
+        const callbackName =
+            "itunes_" +
+            Date.now() +
+            "_" +
+            Math.floor(
+                Math.random() * 100000
+            );
+
+
+        const script =
+            document.createElement("script");
+
+
+        const timeout =
+            setTimeout(() => {
+
+                cleanup();
+
+                resolve(null);
+
+            },8000);
+
+
+        window[callbackName] =
+            function(data) {
+
+                clearTimeout(timeout);
+
+
+                let artwork = null;
+
+
+                if(
+                    data &&
+                    data.resultCount > 0
+                ) {
+
+                    const result =
+                        chooseBestResult(
+                            data.results,
+                            artist,
+                            title
+                        );
+
+
+                    if(result) {
+
+                        artwork =
+                            result.artworkUrl100
+                            ?.replace(
+                                "100x100",
+                                "600x600"
+                            );
+
+                    }
+
+                }
+
+
+                cleanup();
+
+                resolve(artwork);
+
+            };
+
+
+        script.src =
+            "https://itunes.apple.com/search" +
+            "?term=" +
+            encodeURIComponent(
+                artist + " " + title
+            ) +
+            "&country=HU" +
+            "&media=music" +
+            "&entity=song" +
+            "&limit=10" +
+            "&callback=" +
+            callbackName;
+
+
+        script.onerror =
+            function() {
+
+                clearTimeout(timeout);
+
+                cleanup();
+
+                resolve(null);
+
+            };
+
+
+        document.body.appendChild(
+            script
+        );
+
+
+        function cleanup() {
+
+            delete window[
+                callbackName
+            ];
+
+
+            if(script.parentNode) {
+
+                script.parentNode.removeChild(
+                    script
+                );
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   BEST iTUNES RESULT
+===================================================== */
+
+function chooseBestResult(
+    results,
+    artist,
+    title
+) {
+
+    if(!results.length)
+        return null;
+
+
+    const wantedArtist =
+        artist.toLowerCase();
+
+
+    const wantedTitle =
+        title.toLowerCase();
+
+
+    const exact =
+        results.find(result => {
+
+            const a =
+                String(
+                    result.artistName || ""
+                ).toLowerCase();
+
+
+            const t =
+                String(
+                    result.trackName || ""
+                ).toLowerCase();
+
+
+            return (
+                a === wantedArtist &&
+                t === wantedTitle
+            );
+
+        });
+
+
+    if(exact)
+        return exact;
+
+
+    const partial =
+        results.find(result => {
+
+            const a =
+                String(
+                    result.artistName || ""
+                ).toLowerCase();
+
+
+            const t =
+                String(
+                    result.trackName || ""
+                ).toLowerCase();
+
+
+            return (
+                (
+                    a.includes(wantedArtist) ||
+                    wantedArtist.includes(a)
+                ) &&
+                (
+                    t.includes(wantedTitle) ||
+                    wantedTitle.includes(t)
+                )
+            );
+
+        });
+
+
+    return partial || results[0];
+
+}
+
+
+/* =====================================================
+   NOW PLAYING
+===================================================== */
+
+async function updateNowPlaying() {
+
+    const data =
+        await getCasterMetadata();
+
+
+    if(!data || !data.title)
+        return;
+
+
+    const parsed =
+        parseSong(data.title);
+
+
+    if(!parsed)
+        return;
+
+
+    const songID =
+        parsed.artist +
+        " - " +
+        parsed.title;
+
+
+    if(songID === lastSong)
+        return;
+
+
+    lastSong =
+        songID;
+
+
+    document.getElementById(
+        "artist"
+    ).textContent =
+        parsed.artist;
+
+
+    document.getElementById(
+        "song"
+    ).textContent =
+        parsed.title;
+
+
+    const artwork =
+        await findArtwork(
+            parsed.artist,
+            parsed.title
+        );
+
+
+    const cover =
+        document.getElementById("cover");
+
+    const status =
+        document.getElementById("artStatus");
+
+
+    if(artwork) {
+
+        cover.src =
+            artwork;
+
+
+        cover.classList.remove(
+            "loading"
+        );
+
+
+        status.textContent =
+            "iTunes album artwork ✓";
+
+    }
+
+    else {
+
+        cover.src =
+            fallbackCover;
+
+
+        cover.classList.remove(
+            "loading"
+        );
+
+
+        status.textContent =
+            "No iTunes artwork found";
+
+    }
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+renderSchedule();
+
+updateOnAir();
+
+updateComingUp();
+
+updateNowPlaying();
+
+
+/* =====================================================
+   AUTO REFRESH — 10 SECONDS
+===================================================== */
+
+setInterval(() => {
+
+    updateNowPlaying();
+
+    updateOnAir();
+
+    updateComingUp();
+
+},10000);
+
+</script>
+
+</body>
+</html>
